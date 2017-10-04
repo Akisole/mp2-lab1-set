@@ -143,8 +143,21 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
-//	 for (int i = 0; i < ; i++)
-//      istr >> ;
+	int i=0;
+	char ch;
+	do {
+		istr >> ch;
+	} while (ch!= ' ');
+	while (1) {
+		istr >> ch;
+		if ( ch == '0' ) 
+			bf.ClrBit(i++);
+		else 
+			if (ch == '1') 
+				bf.ClrBit(i++);
+		else 
+			break;
+	}
     return istr;
 }
 
