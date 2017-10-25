@@ -1,7 +1,7 @@
 #include "tset.h"
 
 #include <gtest.h>
-
+//+
 TEST(TSet, can_get_max_power_set)
 {
   const int size = 5;
@@ -9,7 +9,7 @@ TEST(TSet, can_get_max_power_set)
 
   EXPECT_EQ(size, set.GetMaxPower());
 }
-
+//+
 TEST(TSet, can_insert_non_existing_element)
 {
   const int size = 5, k = 3;
@@ -18,7 +18,7 @@ TEST(TSet, can_insert_non_existing_element)
 
   EXPECT_NE(set.IsMember(k), 0);
 }
-
+//+
 TEST(TSet, can_insert_existing_element)
 {
   const int size = 5;
@@ -29,7 +29,7 @@ TEST(TSet, can_insert_existing_element)
 
   EXPECT_NE(set.IsMember(k), 0);
 }
-
+//+
 TEST(TSet, can_delete_non_existing_element)
 {
   const int size = 5, k = 3;
@@ -38,7 +38,7 @@ TEST(TSet, can_delete_non_existing_element)
 
   EXPECT_EQ(set.IsMember(k), 0);
 }
-
+//+
 TEST(TSet, can_delete_existing_element)
 {
   const int size = 5, k = 3;
@@ -50,7 +50,7 @@ TEST(TSet, can_delete_existing_element)
   set.DelElem(k);
   EXPECT_EQ(set.IsMember(k), 0);
 }
-
+//+
 TEST(TSet, compare_two_sets_of_non_equal_sizes)
 {
   const int size1 = 4, size2 = 6;
@@ -109,7 +109,7 @@ TEST(TSet, can_assign_set_of_greater_size)
 
   EXPECT_EQ(set1, set2);
 }
-
+//+
 TEST(TSet, can_assign_set_of_less_size)
 {
   const int size1 = 6, size2 = 4;
@@ -134,7 +134,7 @@ TEST(TSet, can_insert_non_existing_element_using_plus_operator)
 
   EXPECT_NE(0, updatedSet.IsMember(k));
 }
-
+//+
 TEST(TSet, throws_when_insert_non_existing_element_out_of_range_using_plus_operator)
 {
   const int size = 4;
