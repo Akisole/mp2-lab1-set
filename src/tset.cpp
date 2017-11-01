@@ -43,6 +43,8 @@ int TSet::IsMember(const int Elem) const // элемент множества?
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
+	if(Elem>MaxPower)
+		throw -1;
 	BitField.SetBit(Elem);
 }
 
@@ -77,13 +79,21 @@ int TSet::operator!=(const TSet &s) const // сравнение
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
-	TSet res(BitField|s.BitField);
+	int max_MP=MaxPower;
+
+	if(MaxPower!=s.MaxPower)
+		if(MaxPower<s.MaxPower)
+			max_MP=s.MaxPower;
+		
+	TSet res(max_MP);
+	TBitField TBBuf=BitField|s.BitField;
+	res.BitField=TBBuf;
 	return res;
 }
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
-	TSet res(BitField);
+	TSet res(*this);
 	res.InsElem(Elem);
 	return res;
 }
@@ -97,14 +107,25 @@ TSet TSet::operator-(const int Elem) // разность с элементом
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
-	TSet res(BitField&s.BitField);
+	int max_MP=MaxPower;
+
+	if(MaxPower!=s.MaxPower)
+		if(MaxPower<s.MaxPower)
+			max_MP=s.MaxPower;
+		
+	TSet res(max_MP);
+	TBitField TBBuf=BitField&s.BitField;
+	res.BitField=TBBuf;
 	return res;
 }
 
 TSet TSet::operator~(void) // дополнение
 {
-	TSet res(~BitField);
-	return res;
+	TSet tmp(MaxPower);
+	for(int i=0; i<MaxPower; i++)
+		if(!IsMember(i))
+			tmp.InsElem(i);
+	return tmp;
 }
 
 // перегрузка ввода/вывода

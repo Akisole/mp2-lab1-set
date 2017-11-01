@@ -122,7 +122,7 @@ TEST(TSet, can_assign_set_of_less_size)
 
   EXPECT_EQ(set1, set2);
 }
-
+//+
 TEST(TSet, can_insert_non_existing_element_using_plus_operator)
 {
   const int size = 4;
@@ -130,6 +130,7 @@ TEST(TSet, can_insert_non_existing_element_using_plus_operator)
   TSet set(size), updatedSet(size);
   set.InsElem(0);
   set.InsElem(2);
+
   updatedSet = set + k;
 
   EXPECT_NE(0, updatedSet.IsMember(k));
@@ -145,7 +146,7 @@ TEST(TSet, throws_when_insert_non_existing_element_out_of_range_using_plus_opera
 
   ASSERT_ANY_THROW(updatedSet = set + k);
 }
-
+//+
 TEST(TSet, can_insert_existing_element_using_plus_operator)
 {
   const int size = 4;
